@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>This is an extension!</title>
+        <script src="https://unpkg.com/@replit/extensions@1.7.2/dist/index.global.js">
+        </script>
+        <script>
+            const setTheme = () => {
+                replit.themes.getCurrentTheme().then(theme => {
+                    for (const value in theme.values.global) {
+                        if (!value.startsWith('_')) {
+                            const cssVariableName = '--' + value.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)
+                            document.documentElement.style.setProperty(cssVariableName, theme.values.global[value])
+                        }
+                    }
+                })
+            }
+            
+            window.addEventListener('load', () => {
+                setTheme()
+                replit.themes.onThemeChange(setTheme)
+            })
+        </script>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.25.0/tabler-icons.min.css"/>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div id="message">
+            <p id="message-content">Loading...</p>
+        </div>
+        <div id="player" class="hidden">
+            <img id="track-cover-image">
+            <img id="spotify-logo" src="images/branding/spotify-logo-full.png">
+            <a target="_blank" id="spotify-link"><img src="images/branding/spotify-icon-small.png">OPEN SPOTIFY</a>
+            <div id="right-side-container">
+                <div id="track-info">
+                    <div id="scrolling-container">
+                        <a target="_blank" id="track-title" title="Track Title"></a>
+                        <a target="_blank" id="album-title" title="Album"></a>
+                        <span id="artists"></span>
+                    </div>
+                </div>
+                <div id="player-controls">
+                    <div id="sharing-options">
+                        <button id="copy-track-link-button" title="Copy Track URL">
+                            <i class="ti ti-copy"></i>
+                        </button>
+                    </div>
+                    <div id="player-controls-box">
+                        <div id="player-controls-buttons-container">
+                            <button id="shuffle-button" title="Shuffle" class="premium-feature">
+                                <i class="ti ti-arrows-shuffle"></i>
+                            </button>
+                            <button id="skip-back-button" title="Skip Back" class="premium-feature">
+                                <i class="ti ti-player-skip-back-filled"></i>
+                            </button>
+                            <button id="play-pause-button" title="Play/Pause" class="premium-feature">
+                                <i class="ti ti-player-play-filled"></i>
+                            </button>
+                            <button id="skip-forward-button" title="Skip Forward" class="premium-feature">
+                                <i class="ti ti-player-skip-forward-filled"></i>
+                            </button>
+                            <button id="repeat-button" title="Repeat" class="premium-feature">
+                                <i class="ti ti-repeat"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="volume-controls" class="premium-feature">
+                        <button id="mute-unmute-button" title="Mute/Unmute">
+                            <i id="volume-icon" class="ti ti-volume"></i>
+                            <!-- <img id="volume-icon" src="images/controls/volume-high.svg"> -->
+                        </button>
+                        <input type="range" id="volume" value="0" max="100" title="Volume">
+                    </div>
+                </div>
+                <span id="track-progress">
+                    <time id="elapsed-track-time">0:00</time>
+                    <input type="range" id="progress-bar" value="0" min="0" max="100" title="Seek">
+                    <time id="total-track-time">0:00</time>
+                </span>
+            </div>
+        </div>
+    </body>
+    <script src="./script.js"></script>
+</html>

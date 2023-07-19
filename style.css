@@ -1,0 +1,358 @@
+:root {
+    --spotify-green: #1DB954;
+    --spotify-black: #191414;
+    --icon-size: 18px;
+    --primary-icon-size: 22px;
+}
+
+html, body {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow: auto;
+    color: var(--foreground-default);
+    background-color: var(--background-root);
+}
+
+#message a {
+    color: var(--accent-primary-stronger)
+}
+
+a:not(#message *) {
+    text-decoration: none;
+    color: var(--primary-color)
+}
+
+a:not(#message *):hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+button {
+    background: none;
+    border: none;
+}
+
+.hidden, 
+.hidden * {
+    display: none !important;
+}
+
+input[type=range] {
+    accent-color: var(--accent-primary-default);
+}
+
+input[type=range]:hover:enabled {
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--background-higher);
+    border-radius: 16px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--background-highest);
+    opacity: 100%;
+}
+
+.premium-locked {
+    pointer-events: none;
+}
+
+@keyframes scroll-left-horizontally {
+    from {
+        left: 100%;
+        transform: translateX(0);
+    }
+    to {
+        left: 100%;
+        transform: translateX(-100%);
+    }
+}
+
+@media only screen and (max-height: 150px) {
+
+    #track-info * {
+        font-style: normal !important;
+        font-weight: normal !important;
+        font-size: 1.2rem !important;
+        color: var(--foreground-dimmer) !important;
+    }
+    
+    #scrolling-container {
+        flex-direction: row !important;
+        text-align: right;
+        display: inline-block;
+    } 
+
+    #scrolling-container > * {
+        padding-right: 5px;
+        display: inline-block;
+    }
+
+    #scrolling-container > *:not(:last-child)::after {
+        content: "-";
+        padding-left: 5px;
+        text-decoration: none !important;
+    }
+}
+
+@media only screen and (min-height: 150px) {
+    #scrolling-container > * {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: fit-content;
+        max-width: calc(100vw - 100vh - 32px);
+        padding-right: 2px;
+    }
+}
+
+@media only screen and (max-height: 400px) {
+    #track-info {
+        max-width: calc(100vw - 100vh - 30px);
+        overflow: hidden;
+    }
+}
+    
+@media only screen and (max-height: 560px) {
+    #track-info * {
+        white-space: nowrap;
+    }
+    
+    #scrolling-container {
+        justify-content: flex-start;
+        /* overflow: hidden; */
+    } 
+}
+
+@media only screen and (min-width: 850px) {
+    #sharing-options {
+        flex-grow: 1;
+        flex-basis: 0;
+    } 
+}
+
+@media only screen and (min-height: 400px /* 560px */) {
+    #player {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #scrolling-container {
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+
+    #scrolling-container > * {
+        max-width: 100%;
+    }
+
+    #sharing-options {
+        flex-grow: 1;
+        flex-basis: 0;
+    } 
+
+    #track-cover-image {
+        width:  auto !important;
+        height: calc(100% - 170px) !important;
+    }
+
+    #right-side-container {
+        height: auto !important;
+        width: calc(100% - 30px) !important;
+        max-width: 800px;
+    }
+}
+ 
+@media only screen and (min-height: 760px) {
+    #spotify-logo {
+        display: block !important;
+        position: absolute;
+    }
+}
+
+#spotify-logo {
+    display: none;
+    top: 0;
+    left: 0;
+    margin: 12px;
+    height: 70px;
+}
+
+#message {
+    height: calc(100% - 30px);
+    width: calc(100% - 30px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+}
+
+#player {
+    display: flex;
+    flex: 0;
+    min-height: 105px;
+    height: 100%; 
+}
+
+#track-cover-image {
+    object-fit: cover;
+    height: 100%;
+    width: auto;
+    max-height: 400px;
+    max-width: 400px;
+}
+
+#right-side-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: calc(100% - 30px);
+    max-height: 370px;
+    width: 100%;
+    margin: 15px;
+}
+
+#spotify-link {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 12px;
+    background-color: var(--accent-primary-dimmer);
+    width: 26px;
+    height: 26px;
+    padding: 4px;
+    border-radius: 100px;
+    overflow: hidden; 
+    white-space: nowrap;
+    text-decoration: none !important;
+}
+
+@keyframes expand-spotify-button {
+    0% {
+        width: 24px;
+    }
+    100% {
+        padding: 4px 8px 4px 8px;
+        width: auto;
+    }
+}
+
+#spotify-link:hover {
+    cursor: pointer;
+    animation: expand-spotify-button 0.2s linear 0s 1 normal forwards;
+    background-color: var(--accent-primary-default);
+}
+
+#spotify-link > img {
+    width: 26px;
+    margin-right: 6px;
+}
+
+#scrolling-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#track-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#album-title, 
+#artists * {
+    color: var(--foreground-dimmer) !important;
+}
+
+#album-title {
+    font-style: italic;
+}
+
+#player-controls {
+    display: flex;
+    width: 100%;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+#player-controls-buttons-container {
+    white-space: nowrap;
+}
+
+#player-controls-buttons-container > button > i,
+#sharing-options > button > i {
+    font-size: var(--primary-icon-size);
+    color: var(--foreground-default);
+}
+
+i.icon-active {
+    color: var(--accent-primary-default) !important;
+}
+
+#volume-controls {
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#volume-icon {
+    color: var(--foreground-default);
+    font-size: var(--icon-size);
+}
+
+#volume {
+    width: calc(100% - var(--icon-size));
+    min-width: 50px;
+    max-width: 150px;
+    accent-color: var(--foreground-default);
+}
+
+#player-controls button:hover:enabled ,
+#player-controls input:hover:enabled {
+    filter: brightness(80%);
+    cursor: pointer;
+}
+
+#track-progress {
+    min-width: 305px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+#progress-bar {
+    width: calc(100% - 10px);
+    margin: 0 5px 0 5px;
+}
+
+#elapsed-track-time,
+#total-track-time {
+    color: var(--foreground-dimmest);
+    font-size: 0.8rem;
+}

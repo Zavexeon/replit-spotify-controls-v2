@@ -1,0 +1,27 @@
+{
+    "name": "Replit Spotify Controls",
+    "icon": "/images/extension/icon.png",
+    "description": "Built-in media controls for Spotify, right in the editor.",
+    "longDescription": "Built-in media controls for Spotify, right in the editor. Now you have access to essential controls and information about the track you're playing, conveniently on the same page you're working on. In order to comply with Spotify Design guidelines, controls will be disabled for non-premium users.",
+    "tags": [
+        "Media",
+        "Music",
+        "Spotify",
+        "Zavexeon"
+    ],
+    "coverImages": [
+        {
+            "path": "/images/extension/cover-image.png",
+            "label": "Replit Spotify Controls open in the Replit Workspace."
+        }
+    ],
+    "website": "https://zave.codes",
+    "authorEmail": "zavexeon@pm.me",
+    "tools": [
+        {
+            "name": "Controls",
+            "icon": "/images/extension/icon.png",
+            "handler": "/"
+        }
+    ]
+}
